@@ -1,0 +1,21 @@
+---
+    version: "2.1"
+    services:
+      rdesktop:
+        image: lscr.io/linuxserver/rdesktop:ubuntu-xfce
+        container_name: ubuntu-xfce
+        security_opt:
+          - seccomp:unconfined #optional
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=Europe/London
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock #optional
+          - /home/pi/docker/ubuntu-xfce/config:/config #optional
+        ports:
+          - 1:3389
+        devices:
+          - /dev/dri:/dev/dri #optional
+        shm_size: "1gb" #optional
+        restart: unless-stopped

@@ -1,0 +1,21 @@
+---
+    version: "2.1"
+    services:
+      rdesktop:
+        image: lscr.io/linuxserver/rdesktop:fedora-icewm
+        container_name: fedora-icewm
+        security_opt:
+          - seccomp:unconfined #optional
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=Europe/Amsterdam
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock #optional
+          - /home/pi/docker/fedora-icewm/config:/config #optional
+        ports:
+          - 23:3389
+        devices:
+          - /dev/dri:/dev/dri #optional
+        shm_size: "1gb" #optional
+        restart: unless-stopped
